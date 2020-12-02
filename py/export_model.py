@@ -37,6 +37,9 @@ net.setInput(test_input_c_first)
 out_dnn = net.forward()
 # compare feature vectors
 np.testing.assert_allclose(out_tf, out_dnn, rtol=1e-03, atol=1e-05)
+max_abs_diff = np.max(np.abs(out_tf-out_dnn))
+max_rel_diff = np.max(np.abs((out_tf-out_dnn)/out_tf))
+print('max absolute difference is {:e} max relative difference is {:e}'.format(max_abs_diff,max_rel_diff))
 
 # save TF result to compare to Cpp
 test_image_folder = 'img_folder'
